@@ -292,6 +292,15 @@ h1 {
   box-shadow: inset 0 0 42px rgba(0, 0, 0, 0.36);
 }
 
+.planet-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+}
+
 .planet-portrait::before {
   content: "NASA";
   position: absolute;
@@ -305,6 +314,16 @@ h1 {
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.16em;
+  z-index: 2;
+}
+
+.planet-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 58%, rgba(2, 7, 17, 0.34));
+  pointer-events: none;
 }
 
 .planet-highlight {
@@ -866,9 +885,11 @@ body.content-mode .about {
   box-shadow:
     inset 0 0 70px rgba(0, 0, 0, 0.34),
     0 0 70px var(--planet-glow);
+  overflow: hidden;
 }
 
 .focus-planet.photo-planet::before {
+  z-index: 1;
   inset: 0;
   border-radius: inherit;
   background:
@@ -896,6 +917,16 @@ body.content-mode .about {
   opacity: 1;
   transform: none;
   filter: none;
+  z-index: 2;
+}
+
+.focus-planet img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.05);
 }
 
 .focus-planet::before {

@@ -230,6 +230,7 @@ const planetIcon = document.querySelector("#planetIcon");
 const planetName = document.querySelector("#planetName");
 const planetEnglish = document.querySelector("#planetEnglish");
 const planetPortrait = document.querySelector("#planetPortrait");
+const planetPortraitImage = document.querySelector("#planetPortraitImage");
 const planetHighlight = document.querySelector("#planetHighlight");
 const planetStats = document.querySelector("#planetStats");
 const speedRange = document.querySelector("#speedRange");
@@ -241,6 +242,7 @@ const orbitLabel = document.querySelector("#orbitLabel");
 const navLinks = [...document.querySelectorAll(".nav-links a")];
 const focusOverlay = document.querySelector("#focusOverlay");
 const focusPlanet = document.querySelector("#focusPlanet");
+const focusPlanetImage = document.querySelector("#focusPlanetImage");
 const focusName = document.querySelector("#focusName");
 const focusEnglish = document.querySelector("#focusEnglish");
 const focusDescription = document.querySelector("#focusDescription");
@@ -302,6 +304,8 @@ function renderPanel() {
   planetEnglish.textContent = planet.english;
   planetHighlight.textContent = planet.highlight;
   setPlanetVars(planetPortrait, planet);
+  planetPortraitImage.src = planet.image;
+  planetPortraitImage.alt = `${planet.name} NASA 图像`;
   planetStats.innerHTML = planet.stats
     .map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`)
     .join("");
@@ -319,6 +323,8 @@ function openPlanetFocus(index = state.selected) {
   setPlanetVars(focusOverlay, planet);
   setPlanetVars(focusPlanet, planet);
   focusPlanet.className = `focus-planet photo-planet ${planet.focusClass}`;
+  focusPlanetImage.src = planet.image;
+  focusPlanetImage.alt = `${planet.name} NASA 放大图像`;
   focusName.textContent = planet.name;
   focusEnglish.textContent = planet.english;
   focusDescription.textContent = planet.highlight;
