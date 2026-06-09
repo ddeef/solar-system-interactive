@@ -1,0 +1,42 @@
+﻿[
+    {
+        "Name":  "mercury",
+        "Page":  "https://science.nasa.gov/mercury/",
+        "Image":  "https://science.nasa.gov/wp-content/uploads/2023/11/mercury-messenger-globe-pia15162.jpg"
+    },
+    {
+        "Name":  "venus",
+        "Page":  "https://science.nasa.gov/venus/",
+        "Image":  "https://science.nasa.gov/wp-content/uploads/2023/05/688-venus-1200-jpg.webp"
+    },
+    {
+        "Name":  "earth",
+        "Page":  "https://science.nasa.gov/earth/",
+        "Image":  "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001016/GSFC_20171208_Archive_e001016~large.jpg"
+    },
+    {
+        "Name":  "mars",
+        "Page":  "https://science.nasa.gov/mars/",
+        "Image":  "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/detail_files/7/7668_Mars-viking-2-orbiter-global-view-partial-valles-marinares-PIA04304-full2.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+    },
+    {
+        "Name":  "jupiter",
+        "Page":  "https://science.nasa.gov/jupiter/",
+        "Image":  "https://assets.science.nasa.gov/content/dam/science/psd/solar/internal_resources/4204/Jupiter_against_black_background_of_space.jpeg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+    },
+    {
+        "Name":  "saturn",
+        "Page":  "https://science.nasa.gov/saturn/",
+        "Image":  "https://science.nasa.gov/wp-content/uploads/2023/05/saturn-farewell-pia21345-sse-banner-1920x640-1.jpg"
+    },
+    {
+        "Name":  "uranus",
+        "Page":  "https://science.nasa.gov/uranus/",
+        "Image":  "https://images-assets.nasa.gov/image/PIA18182/PIA18182~orig.jpg"
+    },
+    {
+        "Name":  "neptune",
+        "Page":  "https://science.nasa.gov/neptune/",
+        "Image":  "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/p/i/a/0/PIA01492-1.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+    }
+]

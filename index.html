@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>穿越太阳系</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="spaceCanvas" aria-hidden="true"></canvas>
+
+    <main class="app-shell">
+      <header class="topbar" aria-label="主导航">
+        <a class="brand" href="#overview" aria-label="太阳系探索首页">
+          <span class="brand-mark"></span>
+          <span>
+            <strong>太阳系探索</strong>
+            <small>Solar System</small>
+          </span>
+        </a>
+        <nav class="nav-links">
+          <a class="active" href="#overview">太阳系</a>
+          <a href="#archive">行星档案</a>
+          <a href="#discoveries">探索发现</a>
+          <a href="#mapGuide">星图</a>
+          <a href="#about">关于我们</a>
+        </nav>
+        <button class="sound-button" id="focusSun" aria-label="聚焦太阳">◎</button>
+      </header>
+
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <h1>穿越太阳系</h1>
+          <p>点击任意行星，了解它们的大小、轨道与故事。</p>
+          <button class="ghost-cta" id="startTour">开始探索 <span>✦</span></button>
+          <div class="hero-facts" aria-label="太阳系概览数据">
+            <span><strong>1</strong> 颗恒星</span>
+            <span><strong>8</strong> 颗行星</span>
+            <span><strong>数百万</strong> 小天体</span>
+          </div>
+        </div>
+
+        <section class="planet-panel" id="planetPanel" aria-live="polite">
+          <button class="close-panel" id="closePanel" aria-label="收起行星档案">×</button>
+          <div class="planet-title-row">
+            <span class="planet-emoji" id="planetIcon"></span>
+            <div>
+              <h2 id="planetName">土星</h2>
+              <p id="planetEnglish">Saturn</p>
+            </div>
+          </div>
+          <div class="planet-portrait" id="planetPortrait"></div>
+          <p class="planet-highlight" id="planetHighlight"></p>
+          <dl class="planet-stats" id="planetStats"></dl>
+          <button class="archive-button" id="archiveButton">进入行星档案 <span>→</span></button>
+        </section>
+      </section>
+
+      <section class="control-row" id="controls" aria-label="星图控制">
+        <label class="control-card">
+          <span>比例</span>
+          <input id="scaleRange" type="range" min="0" max="2" value="1" step="1" />
+          <strong id="scaleLabel">沉浸比例</strong>
+        </label>
+        <label class="control-card">
+          <span>速度</span>
+          <input id="speedRange" type="range" min="0.4" max="2.2" value="1" step="0.1" />
+          <strong><span id="speedLabel">1.0</span>x</strong>
+        </label>
+        <label class="control-card toggle-card">
+          <span>轨道显示</span>
+          <input id="orbitToggle" type="checkbox" checked />
+          <strong id="orbitLabel">开</strong>
+        </label>
+      </section>
+
+      <section class="planet-dock" aria-label="选择行星">
+        <button class="dock-arrow" id="prevPlanet" aria-label="上一颗行星">‹</button>
+        <div class="planet-list" id="planetList"></div>
+        <button class="dock-arrow" id="nextPlanet" aria-label="下一颗行星">›</button>
+      </section>
+
+      <aside class="legend" id="legend" aria-label="图例">
+        <h3>图例</h3>
+        <p><span class="line solid"></span> 行星轨道</p>
+        <p><span class="line dashed"></span> 小行星带</p>
+        <p><span class="dot"></span> 行星位置</p>
+        <p><span class="trail"></span> 彗星航迹</p>
+      </aside>
+
+      <section class="content-stack" aria-label="太阳系详细内容">
+        <section class="content-section archive-section" id="archive">
+          <div class="section-heading">
+            <p>Planet Archive</p>
+            <h2>行星档案</h2>
+            <span>从内行星到冰巨星，快速进入每颗行星的精细档案。</span>
+          </div>
+          <div class="archive-grid">
+            <article>
+              <strong>内行星</strong>
+              <p>水星、金星、地球、火星都有坚硬地表，轨道更靠近太阳，体积相对较小。</p>
+              <div class="quick-buttons">
+                <button data-planet-index="0">水星</button>
+                <button data-planet-index="1">金星</button>
+                <button data-planet-index="2">地球</button>
+                <button data-planet-index="3">火星</button>
+              </div>
+            </article>
+            <article>
+              <strong>气态巨行星</strong>
+              <p>木星和土星由厚重大气主导，拥有巨大的质量、复杂风暴和丰富卫星系统。</p>
+              <div class="quick-buttons">
+                <button data-planet-index="4">木星</button>
+                <button data-planet-index="5">土星</button>
+              </div>
+            </article>
+            <article>
+              <strong>冰巨星</strong>
+              <p>天王星与海王星遥远寒冷，富含水、氨和甲烷等冰态物质，呈现青蓝色调。</p>
+              <div class="quick-buttons">
+                <button data-planet-index="6">天王星</button>
+                <button data-planet-index="7">海王星</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section discoveries-section" id="discoveries">
+          <div class="section-heading">
+            <p>Exploration Notes</p>
+            <h2>探索发现</h2>
+            <span>把复杂的天文概念拆成可以边看边理解的观测线索。</span>
+          </div>
+          <div class="discovery-list">
+            <article>
+              <span>01</span>
+              <h3>为什么行星不会飞走？</h3>
+              <p>太阳的引力持续拉住行星，行星自身的前进速度又让它们不断“错过”太阳，于是形成稳定轨道。</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>小行星带在哪里？</h3>
+              <p>它主要位于火星和木星之间，是早期太阳系残留物聚集的区域，也是理解行星形成的重要线索。</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>为什么外行星这么大？</h3>
+              <p>远离太阳的区域温度更低，冰和气体更容易保留下来，帮助木星、土星等行星积累巨大质量。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section map-section" id="mapGuide">
+          <div class="section-heading">
+            <p>Map Guide</p>
+            <h2>星图说明</h2>
+            <span>这个星图不是按真实比例绘制，而是为了让轨道和行星都能被清楚观察。</span>
+          </div>
+          <div class="map-guide-grid">
+            <article>
+              <h3>比例</h3>
+              <p>调整轨道展开程度。紧凑比例适合快速扫视，宏观比例更适合观察外行星轨道。</p>
+            </article>
+            <article>
+              <h3>速度</h3>
+              <p>改变轨道动画速度，用来感受内外行星公转节奏的差异。</p>
+            </article>
+            <article>
+              <h3>轨道显示</h3>
+              <p>打开时显示发光轨道线，关闭后更像纯粹的深空观测视角。</p>
+            </article>
+            <article>
+              <h3>行星放大</h3>
+              <p>点击星图上的行星或底部行星按钮，会进入精细聚焦视图查看特征。</p>
+            </article>
+          </div>
+          <div class="accuracy-note">
+            <strong>准确度说明</strong>
+            <p>
+              行星直径、平均距离、公转周期等核心数据参考 NASA Science。为了保证网页可读性，轨道距离和行星尺寸做了可视化压缩，并非真实比例模型。
+            </p>
+          </div>
+        </section>
+
+        <section class="content-section about-section" id="about">
+          <div class="section-heading">
+            <p>About This Prototype</p>
+            <h2>关于我们</h2>
+            <span>这是一个面向大众科普的互动太阳系网页原型。</span>
+          </div>
+          <div class="about-copy">
+            <p>
+              页面目标是把太阳系的空间关系、行星差异和基础数据放进同一个可探索界面里。它适合课堂展示、科普活动、个人学习，也适合继续扩展成更完整的天文教育产品。
+            </p>
+            <p>
+              当前版本重点是交互体验：可点击行星、可调整轨道速度和比例、可打开精细行星视图。后续可以继续加入真实 NASA 数据、卫星系统、探测任务时间线和测验模式。
+            </p>
+            <p class="source-links">
+              数据参考：
+              <a href="https://science.nasa.gov/solar-system/planets/" target="_blank" rel="noreferrer">NASA Planets</a>
+              <a href="https://science.nasa.gov/solar-system/planets/planet-sizes-and-locations-in-our-solar-system/" target="_blank" rel="noreferrer">Sizes & Locations</a>
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <footer class="about">
+        <span>按空格键暂停 / 继续轨道动画</span>
+        <span>数据为科普展示用，便于快速比较。</span>
+      </footer>
+    </main>
+
+    <section class="focus-overlay" id="focusOverlay" aria-hidden="true" aria-label="行星放大视图">
+      <div class="focus-backdrop"></div>
+      <article class="focus-card" role="dialog" aria-modal="true" aria-labelledby="focusName">
+        <button class="focus-close" id="focusClose" aria-label="关闭行星放大视图">×</button>
+        <div class="focus-visual">
+          <div class="focus-orbit-ring"></div>
+          <div class="focus-planet" id="focusPlanet"></div>
+        </div>
+        <div class="focus-content">
+          <p class="focus-label">Planet Focus</p>
+          <h2 id="focusName">土星</h2>
+          <p id="focusEnglish">Saturn</p>
+          <p class="focus-description" id="focusDescription"></p>
+          <div class="feature-tags" id="featureTags"></div>
+          <dl class="focus-stats" id="focusStats"></dl>
+        </div>
+      </article>
+    </section>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
